@@ -25,8 +25,8 @@ var Engine = (function(global) {
         ctx = canvas.getContext('2d'),
         lastTime;
 
-    canvas.width = 800;
-    canvas.height = 900;
+    canvas.width = CANVAS_WIDTH;
+    canvas.height = CANVAS_HEIGHT;
     doc.body.appendChild(canvas);
 
     /* This function serves as the kickoff point for the game loop itself
@@ -91,7 +91,10 @@ var Engine = (function(global) {
      * render methods.
      */
     function updateEntities(dt) {
-        allEnemies.forEach(function(enemy) {
+        if (EnemyFactory.getEnemyCount() <= 4) {
+            EnemyFactory.createRandomEnemy();
+        }
+        EnemyFactory.allEnemies.forEach(function(enemy) {
             enemy.update(dt);
         });
         player.update();
@@ -117,8 +120,8 @@ var Engine = (function(global) {
                 'images/grass-block.png',   // Row 1 of 2 of grass
                 'images/grass-block.png'    // Row 2 of 2 of grass
             ],
-            numRows = 8,
-            numCols = 7,
+            numRows = GAMEBOARD_ROW_AMOUNT,
+            numCols = GAMEBOARD_COL_AMOUNT,
             row, col;
 
         /* Loop through the number of rows and columns we've defined above
@@ -149,7 +152,7 @@ var Engine = (function(global) {
         /* Loop through all of the objects within the allEnemies array and call
          * the render function you have defined.
          */
-        allEnemies.forEach(function(enemy) {
+        EnemyFactory.allEnemies.forEach(function(enemy) {
             enemy.render();
         });
 
