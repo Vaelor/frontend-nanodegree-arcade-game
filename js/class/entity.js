@@ -15,6 +15,7 @@
  * @param {position} position - Location
  * @param {speed} speed - Movement speed
  * @param {string} sprite - The Image to visualize the entity
+ * @param {string} life - the entities lifepoints
  */
 var Entity = function (position, speed, sprite, life) {
 	this.position = position;

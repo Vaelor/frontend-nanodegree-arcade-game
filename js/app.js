@@ -17,7 +17,3 @@ document.addEventListener('keyup', function keyUpEvent(e) {
 
 	player.handleInput(allowedKeys[e.keyCode]);
 });
-
-//$(function appInit() {
-//	Engine.init();
-//});
